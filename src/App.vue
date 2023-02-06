@@ -1,26 +1,64 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <AuthComponent v-if="page === 'auth'" @changePage="changePage"/>
+  <ShopComponent v-else-if="page === 'shop'" @addToCart="addToCart" @changePage="changePage"/>
+  <div v-else>
+    <button v-on:click="changePage('shop')">Liste de produit</button>
+    <button v-on:click="commander">commander</button>
+
+    <div v-for="produit in panier" :key="produit">
+      <ProduitComponent :produit="produit" :showAAP="false"/>
+    </div>
+
+    <span class="error">{{error}}</span>
+    <span class="msg">{{msg}}</span>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import AuthComponent from "./components/AuthComponent";
+import ShopComponent from "./components/ShopComponent";
+import ProduitComponent from "./components/ProduitComponent";
+import {ServiceCommande} from "./assets/js/services/ServiceCommande";
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    AuthComponent,
+    ShopComponent,
+    ProduitComponent
+  },
+  data: () => ({
+    page: localStorage.getItem("token") != null ? "shop" : "auth",
+    panier: [],
+    error: "",
+    msg: ""
+  }),
+
+  methods: {
+    changePage(value) {
+      this.page = value;
+    },
+    commander() {
+      ServiceCommande.save(this.panier);
+    },
+    addToCart(produit) {
+      this.panier.push(produit);
+    }
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+body {
+  background-color: black;
+  color: white;
+}
+
+.error {
+  color: red;
+}
+
+.msg {
+  color: green;
 }
 </style>
