@@ -44,6 +44,7 @@ export default {
               const result = await response.json();
               if(response.status === 200) {
                 localStorage.setItem("token", result.message)
+                this.$emit("setIsConnected", true);
                 this.$emit("changePage", "shop");
               } else {
                 this.error = result.message;

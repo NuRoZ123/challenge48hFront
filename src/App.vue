@@ -1,16 +1,6 @@
 <template>
-  <div class="header flex">
-	<img src="../public/logo.png" height="10" width="512" alt="">
-	<div class="space-x-10 flex justify-center w-full mr-[30%] items-center ">
-		<button class="text-xl font-bold">Shop</button>
-		<button class="text-xl font-bold">Sign in / Log in</button>
-	</div>
-	<button>
-		<img src="" alt="">
-	</button>
-
-  </div>
-  <AuthComponent v-if="page === 'auth'" @changePage="changePage"/>
+  <NavComponent :isConnected="isConnected" @changePage="changePage" @setIsConnected="setIsConnected"/>
+  <AuthComponent v-if="page === 'auth'" @changePage="changePage" @setIsConnected="setIsConnected"/>
   <ShopComponent v-else-if="page === 'shop'" @addToCart="addToCart" @changePage="changePage"/>
   <div class="w-full  h-full flex flex-col space-y-4 justify-center" v-else>
 	<div class="flex flex-col space-y-4 mt-10 rounded-xl mx-[40%] p-4  justify-center">
@@ -33,19 +23,22 @@ import AuthComponent from "./components/AuthComponent";
 import ShopComponent from "./components/ShopComponent";
 import ProduitComponent from "./components/ProduitComponent";
 import {ServiceCommande} from "./assets/js/services/ServiceCommande";
+import NavComponent from "./components/NavComponent";
 
 export default {
   name: 'App',
   components: {
+    NavComponent,
     AuthComponent,
     ShopComponent,
     ProduitComponent
   },
   data: () => ({
-	page: localStorage.getItem("token") != null ? "shop" : "auth",
+    page: localStorage.getItem("token") != null ? "shop" : "auth",
     panier: [],
     error: "",
-    msg: ""
+    msg: "",
+    isConnected: localStorage.getItem("token") !== null,
   }),
 
   methods: {
@@ -57,6 +50,9 @@ export default {
     },
     addToCart(produit) {
       this.panier.push(produit);
+    },
+    setIsConnected(value) {
+      this.isConnected = value;
     }
   },
 }
