@@ -3,7 +3,7 @@
     <h1 class="text-xl pl-10 pt-5 pb-5">DecentralDeals</h1>
 	<div class="space-x-10 flex justify-center w-full mr-40 items-center ">
 		<button>Shop</button>
-		<button>Sign in / Log in</button>		
+		<button>Sign in / Log in</button>
 	</div>
 	<button>
 		<img src="" alt="">
