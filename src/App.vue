@@ -44,7 +44,7 @@ export default {
     addToCart(produit) {
       this.panier.push(produit);
     }
-  }
+  },
 }
 </script>
 
