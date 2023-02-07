@@ -1,8 +1,15 @@
 <template>
   <div class="header flex">
     <h1 class="text-xl pl-10 pt-5 pb-5">DecentralDeals</h1>
-    <button>Accueil</button>
-    <button>Shop</button>
+	<div class="space-x-10 flex justify-center w-full mr-40 items-center ">
+		<button class="">Accueil</button>
+		<button>Shop</button>
+		<button>Sign in / Log in</button>		
+	</div>
+	<button>
+		<img src="" alt="">
+	</button>
+
   </div>
   <AuthComponent v-if="page === 'auth'" @changePage="changePage"/>
   <ShopComponent v-else-if="page === 'shop'" @addToCart="addToCart" @changePage="changePage"/>
@@ -33,7 +40,8 @@ export default {
     ProduitComponent
   },
   data: () => ({
-    page: localStorage.getItem("token") != null ? "shop" : "auth",
+	page: "shop",
+    //page: localStorage.getItem("token") != null ? "shop" : "auth",
     panier: [],
     error: "",
     msg: ""

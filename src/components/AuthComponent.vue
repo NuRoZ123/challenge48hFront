@@ -65,7 +65,7 @@ button {
   width: 180px;
     font-size: 12px;
     padding: 12px 0;
-    background: linear-gradient(45deg, #565565, #618168);
+    background: #FFC72C;
     border: 0;
     border-radius: 20px;
     outline: none;
