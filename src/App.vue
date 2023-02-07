@@ -35,7 +35,10 @@ export default {
       this.page = value;
     },
     addToCart(produit) {
-      this.panier.push(produit);
+      let indexOfProduit = this.panier.findIndex((element) => element.id === produit.id && element.marchand.instance.id === produit.marchand.instance.id) 
+      if(indexOfProduit === -1) {
+        this.panier.push(produit);
+      }
     },
     setIsConnected(value) {
       this.isConnected = value;
