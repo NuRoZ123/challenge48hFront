@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col justify-center items-center space-y-4">
+  <div class="flex flex-col  items-center space-y-4">
     <input class="rounded-2xl text-center" type="email" v-model="this.email" placeholder="email">
     <input class="rounded-2xl text-center" type="password" v-model="this.password" placeholder="password">
     <button type="button" v-on:click="login">Connecter</button>
