@@ -1,4 +1,5 @@
 <template>
+  <h1 class="text-3xl font-bold underline">test</h1>
   <AuthComponent v-if="page === 'auth'" @changePage="changePage"/>
   <ShopComponent v-else-if="page === 'shop'" @addToCart="addToCart" @changePage="changePage"/>
   <div v-else>
@@ -49,6 +50,11 @@ export default {
 </script>
 
 <style>
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
   background-color: black;
   color: white;
