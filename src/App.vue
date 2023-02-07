@@ -40,8 +40,7 @@ export default {
     ProduitComponent
   },
   data: () => ({
-	page: "shop",
-    //page: localStorage.getItem("token") != null ? "shop" : "auth",
+    page: localStorage.getItem("token") != null ? "shop" : "auth",
     panier: [],
     error: "",
     msg: ""

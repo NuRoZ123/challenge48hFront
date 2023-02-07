@@ -3,7 +3,7 @@
    <p>{{ leProduit.nom }}</p>
    <p>{{ leProduit.description }}</p>
    <p>{{ leProduit.prix }}</p>
-   <button v-on:click="ajouterAuPanier" v-show="showATC">ajouter au panier</button>
+   <button v-on:click="ajouterAuPanier" v-show="showATC">Ajouter au panier</button>
  </div>
 </template>
 
