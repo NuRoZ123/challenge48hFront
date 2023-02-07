@@ -7,7 +7,7 @@
 				{{ marchand.nom }}
 				</option>
 			</select>
-			<button class="rounded-xl p-4 bg-[#ffc72c] mx-[40%]" v-on:click="changeCard">choisir ce commercant</button>
+			<button class="rounded-xl p-4 bg-[#ffc72c] mx-[40%]" v-on:click="changeCard">Choisir ce commercant</button>
 
 			<div v-for="produit in produits" :key="produit">
 				<ProduitComponent :produit="produit" :showAAP="true" @addToPanier="addToPanier"/>

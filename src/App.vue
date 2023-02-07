@@ -1,9 +1,9 @@
 <template>
   <div class="header flex">
-    <h1 class="text-xl pl-10 pt-5 pb-5">DecentralDeals</h1>
-	<div class="space-x-10 flex justify-center w-full mr-40 items-center ">
-		<button>Shop</button>
-		<button>Sign in / Log in</button>
+	<img src="../public/logo.png" height="10" width="512" alt="">
+	<div class="space-x-10 flex justify-center w-full mr-[30%] items-center ">
+		<button class="text-xl font-bold">Shop</button>
+		<button class="text-xl font-bold">Sign in / Log in</button>
 	</div>
 	<button>
 		<img src="" alt="">
@@ -12,9 +12,12 @@
   </div>
   <AuthComponent v-if="page === 'auth'" @changePage="changePage"/>
   <ShopComponent v-else-if="page === 'shop'" @addToCart="addToCart" @changePage="changePage"/>
-  <div v-else>
-    <button v-on:click="changePage('shop')">Liste de produit</button>
-    <button v-on:click="commander">Commander</button>
+  <div class="w-full  h-full flex flex-col space-y-4 justify-center" v-else>
+	<div class="flex flex-col space-y-4 mt-10 rounded-xl mx-[40%] p-4  justify-center">
+		<button class="mb-6 bg-[#ffc72c] p-4 rounded-xl" v-on:click="changePage('shop')">Liste de produit</button>
+		<button class="bg-[#ffc72c] p-4 rounded-xl" v-on:click="commander">Commander</button>		
+	</div>
+
 
     <div v-for="produit in panier" :key="produit">
       <ProduitComponent :produit="produit" :showAAP="false"/>
@@ -39,7 +42,8 @@ export default {
     ProduitComponent
   },
   data: () => ({
-    page: localStorage.getItem("token") != null ? "shop" : "auth",
+	page: "shop",
+    //page: localStorage.getItem("token") != null ? "shop" : "auth",
     panier: [],
     error: "",
     msg: ""
