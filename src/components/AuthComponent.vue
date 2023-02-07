@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col mb-[30%] mt-[30%] items-center space-y-4">
+  <div class="flex flex-col mb-[30%] mt-[30%] items-center space-y-4 MyCenter">
     <input class="rounded-2xl text-center" type="email" v-model="this.email" placeholder="email">
     <input class="rounded-2xl text-center" type="password" v-model="this.password" placeholder="password">
     <button type="button" v-on:click="login">Connecter</button>
@@ -57,6 +57,13 @@ export default {
 </script>
 
 <style scoped>
+.MyCenter {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
 div{
   margin-top: 20em;
   justify-content: space-between;
