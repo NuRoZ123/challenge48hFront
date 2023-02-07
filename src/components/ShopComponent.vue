@@ -10,7 +10,6 @@
   <div v-for="produit in produits" :key="produit">
     <ProduitComponent :produit="produit" :showAAP="true" @addToPanier="addToPanier"/>
   </div>
-
 </template>
 
 <script>
