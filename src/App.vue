@@ -1,10 +1,14 @@
 <template>
-  <h1 class="text-3xl font-bold underline">test</h1>
+  <div class="header flex">
+    <h1 class="text-xl pl-10 pt-5 pb-5">DecentralDeals</h1>
+    <button>Accueil</button>
+    <button>Shop</button>
+  </div>
   <AuthComponent v-if="page === 'auth'" @changePage="changePage"/>
   <ShopComponent v-else-if="page === 'shop'" @addToCart="addToCart" @changePage="changePage"/>
   <div v-else>
     <button v-on:click="changePage('shop')">Liste de produit</button>
-    <button v-on:click="commander">commander</button>
+    <button v-on:click="commander">Commander</button>
 
     <div v-for="produit in panier" :key="produit">
       <ProduitComponent :produit="produit" :showAAP="false"/>
@@ -56,10 +60,16 @@ export default {
 @tailwind utilities;
 
 html, body {
-  background-color: black;
+  background-color: #808080;
   margin:0;
   padding:0;
   height:100%;
+}
+
+.header {
+  background-color: #ffc72c;
+  padding: 10px;
+  text-align: center;
 }
 
 .error {
