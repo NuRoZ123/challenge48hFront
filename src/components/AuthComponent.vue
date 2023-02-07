@@ -1,7 +1,7 @@
-<template>
+<template className="flex space-x-6">
     <input type="email" v-model="this.email" placeholder="email">
     <input type="password" v-model="this.password" placeholder="password">
-    <button type="button" v-on:click="login">connecter</button>
+    <button type="button" classname="rounded-lg bg-red p-4" v-on:click="login">connecter</button>
     <button type="button" v-on:click="register">s'enregistrer</button>
 
     <span class="error">{{ error }}</span>
@@ -54,5 +54,8 @@ export default {
 </script>
 
 <style scoped>
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 </style>
