@@ -51,13 +51,15 @@ export default {
 
 <style>
 
-/*@tailwind base;*/
-/*@tailwind components;*/
-/*@tailwind utilities;*/
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-body {
+html, body {
   background-color: black;
-  color: white;
+  margin:0;
+  padding:0;
+  height:100%;
 }
 
 .error {
