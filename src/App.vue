@@ -2,28 +2,17 @@
   <NavComponent :isConnected="isConnected" @changePage="changePage" @setIsConnected="setIsConnected"/>
   <AuthComponent v-if="page === 'auth'" @changePage="changePage" @setIsConnected="setIsConnected"/>
   <ShopComponent v-else-if="page === 'shop'" @addToCart="addToCart" @changePage="changePage"/>
-  <div class="w-full  h-full flex flex-col space-y-4 justify-center" v-else>
-	<div class="flex flex-col space-y-4 mt-10 rounded-xl mx-[40%] p-4  justify-center">
-		<button class="mb-6 bg-[#ffc72c] p-4 rounded-xl" v-on:click="changePage('shop')">Liste de produit</button>
-		<button class="bg-[#ffc72c] p-4 rounded-xl" v-on:click="commander">Commander</button>		
-	</div>
+  <CartComponent v-else-if="page === 'cart'" :panier="panier" @changePage="changePage" @clearPanier="clearPanier" @removeToCart="removeToCart"/>
 
-
-    <div v-for="produit in panier" :key="produit">
-      <ProduitComponent :produit="produit" :showAAP="false"/>
-    </div>
-
-    <span class="error">{{error}}</span>
-    <span class="msg">{{msg}}</span>
-  </div>
+  <span class="error">{{error}}</span>
+  <span class="msg">{{msg}}</span>
 </template>
 
 <script>
 import AuthComponent from "./components/AuthComponent";
 import ShopComponent from "./components/ShopComponent";
-import ProduitComponent from "./components/ProduitComponent";
-import {ServiceCommande} from "./assets/js/services/ServiceCommande";
 import NavComponent from "./components/NavComponent";
+import CartComponent from "./components/CartComponent";
 
 export default {
   name: 'App',
@@ -31,7 +20,7 @@ export default {
     NavComponent,
     AuthComponent,
     ShopComponent,
-    ProduitComponent
+    CartComponent
   },
   data: () => ({
     page: localStorage.getItem("token") != null ? "shop" : "auth",
@@ -45,14 +34,17 @@ export default {
     changePage(value) {
       this.page = value;
     },
-    commander() {
-      ServiceCommande.save(this.panier);
-    },
     addToCart(produit) {
       this.panier.push(produit);
     },
     setIsConnected(value) {
       this.isConnected = value;
+    },
+    clearPanier() {
+      this.panier = [];
+    },
+    removeToCart(indexProduit) {
+      this.panier.splice(indexProduit, 1);
     }
   },
 }

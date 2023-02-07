@@ -1,12 +1,4 @@
 <template>
- <!--
-  <div>
-   <p>{{ leProduit.nom }}</p>
-   <p>{{ leProduit.description }}</p>
-   <p>{{ leProduit.prix }}</p>
-   <button v-on:click="ajouterAuPanier" v-show="showATC">Ajouter au panier</button>
- </div>
-  --> 
  <div class="py-8 pl-12 flex justify-center mx-[40%] rounded-xl">
 			<div className="">
 				<!-- 
@@ -32,7 +24,7 @@
 					<div className="flex items-center space-x-10 justify-between">
 						<span className="text-3xl font-bold text-gray-900 dark:text-black">${{ leProduit.prix }}</span>
 						<a href="#" v-on:click="ajouterAuPanier" v-show="showATC" className="text-white bg-[#FFC72C] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Add to cart</a>
-            <a href="#" v-show="!showATC" className="text-white bg-[#FFC72C] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Remove to cart</a>
+            <a href="#" v-show="!showATC" v-on:click="supprimerDuPanier" className="text-white bg-[#FFC72C] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Remove to cart</a>
 					</div>
 				</div>
 			</div>	
@@ -42,7 +34,7 @@
 <script>
 export default {
   name: "ProduitComponent",
-  props: ["produit", "showAAP"],
+  props: ["produit", "showAAP", "index"],
   data: () => ({
     leProduit: {nom: "", description: "", prix: 0.0},
     showATC: false,
@@ -50,6 +42,9 @@ export default {
   methods: {
     ajouterAuPanier() {
       this.$emit("addToPanier", this.produit);
+    },
+    supprimerDuPanier() {
+      this.$emit("removeToPanier", this.index);
     }
   },
   mounted() {
